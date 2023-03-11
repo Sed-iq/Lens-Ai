@@ -3,7 +3,7 @@ const randomGen = (range) => {
   let strNum = "";
   let arrNum = [];
   for (let i = 0; i < range; i++) {
-    let number = Math.floor(Math.random() * 5);
+    let number = Math.round(Math.random() * 7);
     arrNum.push(number);
   }
   arrNum.forEach((num) => {

@@ -1,11 +1,8 @@
 import io
 import os
 import warnings
-from cloudinary.uploader import upload
-from cloudinary.utils import cloudinary_url
 from PIL import Image
 from stability_sdk import client
-import base64
 import stability_sdk.interfaces.gooseai.generation.generation_pb2 as generation
 # Remove all these when done vvvv
 proxy = "http://192.168.43.1:8080"
@@ -16,23 +13,17 @@ os.environ['HTTPS_PROXY'] = proxy
 # Remove all these when done ^^^^^^
 
 error = False
-os.environ['STABILITY_HOST'] = 'grpc.stability.ai:443'
-os.environ['STABILITY_KEY'] = 'sk-LYTJu3AHFW9CZRwE7Sqm3d4NnnaowQz9QLIcj0pAjvnP81Ud'
 seed = int(input(""))
+os.environ['STABILITY_HOST'] =input()
+os.environ['STABILITY_KEY'] = input()
 stability_api = client.StabilityInference(
 	key=os.environ['STABILITY_KEY'],
 	verbose=True,
 	engine="stable-diffusion-v1-5",
 )
-// Config
-cloudinary.config(
-  cloud_name = "dfky5lftj",
-  api_key = "391632465152976",
-  api_secret = "B7ZTPBfEwUh-DJ9Cv_8Q-831NPw",
-  secure = true
-)
+
 answers = stability_api.generate(
-    prompt="Naruto but in the 60s",
+    prompt=input(),
     seed= seed, # Make it a random number from javascript
     steps=30,
     cfg_scale=8.0,
@@ -53,6 +44,6 @@ for resp in answers:
 			if error == True:
 				raise Exception("Sorry an Error has occurred")
 			else:
-				# Uploading from here
-				# img.save(str(artifact.seed)+".png") # Test it with binary to send to javascript
+				img.save(str(seed)+".png")
+        
    
