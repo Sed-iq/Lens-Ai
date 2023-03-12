@@ -5,12 +5,7 @@ from PIL import Image
 from stability_sdk import client
 import stability_sdk.interfaces.gooseai.generation.generation_pb2 as generation
 # Remove all these when done vvvv
-proxy = "http://192.168.43.1:8080"
-os.environ['http_proxy'] = proxy 
-os.environ['HTTP_PROXY'] = proxy
-os.environ['https_proxy'] = proxy
-os.environ['HTTPS_PROXY'] = proxy
-# Remove all these when done ^^^^^^
+
 
 error = False
 seed = int(input(""))
